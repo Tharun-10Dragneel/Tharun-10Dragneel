@@ -9,7 +9,7 @@ Hello world I'm a bit of a tech geek, always eager to learn new technologies and
 * 🌍  I'm based in Delhi India
 * ✉️  You can contact me at [dragnatsu766@gmail](mailto:dragnatsu766@gmail)
 * 🧠  I'm learning Flutter
-* 🤝  I'm open to collaborating on projects related to Cross platofrom apps
+* 🤝  I'm open to collaborating on projects related to Cross platfrom apps
 * ⚡  i'm a anime fan , if you are to then lets get along
 
 <a href="https://www.github.com/Tharun-10Dragneel" target="_blank" rel="noreferrer"><img
