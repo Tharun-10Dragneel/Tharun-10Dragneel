@@ -1,34 +1,42 @@
-Hi ![](https://user-images.githubusercontent.com/18350557/176309783-0785949b-9127-417c-8b55-ab5a4333674e.gif)My name is Tharundhatri you can call me tharun
-===========================================================================================================================================================
+# Hi there, I'm S.Tharundhatri,You all can call me Tharun 👋
 
-Desginer and web dev
---------------------
+Welcome to my GitHub profile! I'm a passionate software developer with experience in a variety of technologies. Here's a summary of my skills and some of the projects I've worked on:
 
-Hello world I'm a bit of a tech geek, always eager to learn new technologies and improve my skills. Currently, I'm diving deep into the world of web development, exploring the magic of HTML, CSS, and Python. With these tools, I can craft dynamic websites and applications that are not only visually stunning but also highly functional and user-friendly. One technology that has me particularly excited these days is Flutter. I've been spending a lot of time learning Dart and mastering the Flutter framework, which allows me to build beautiful and performant mobile apps that run seamlessly on both iOS and Android devices.
+## Skills Acquired
 
-* 🌍  I'm based in Delhi India
-* ✉️  You can contact me at [dragnatsu766@gmail](mailto:dragnatsu766@gmail)
-* 🧠  I'm learning Flutter
-* 🤝  I'm open to collaborating on projects related to Cross platfrom apps
-* ⚡  i'm a anime fan , if you are to then lets get along
+- **Programming Languages:** Python, HTML, CSS, JavaScript, Arduino, Scratch, SQL
+- **Data Analysis & Visualization:** Microsoft Excel, Microsoft PowerBi
+- **Cloud Technologies:** Microsoft Azure AI, Microsoft Power Automate, AWS
+- **Design & Drafting:** AutoCAD
 
-<a href="https://www.github.com/Tharun-10Dragneel" target="_blank" rel="noreferrer"><img
-src="https://img.shields.io/github/followers/Tharun-10Dragneel?logo=github&style=for-the-badge&color=0891b2&labelColor=1c1917" /></a>
+## Currently Learning
 
-### Skills
+- **Flutter & Dart:** Excited to dive into mobile app development with Flutter and Dart!
 
+## Projects
 
-<p align="left">
-<a href="https://dart.dev/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/dart-colored.svg" width="36" height="36" alt="Dart" /></a><a href="https://www.python.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/python-colored.svg" width="36" height="36" alt="Python" /></a><a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/visualstudiocode.svg" width="36" height="36" alt="VS Code" /></a><a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/html5-colored.svg" width="36" height="36" alt="HTML5" /></a><a href="https://www.mysql.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/mysql-colored.svg" width="36" height="36" alt="MySQL" /></a><a href="https://firebase.google.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/firebase-colored.svg" width="36" height="36" alt="Firebase" /></a><a href="https://www.figma.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/figma-colored.svg" width="36" height="36" alt="Figma" /></a><a href="https://wix.com" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/wix-colored.svg" width="36" height="36" alt="Wix" /></a><a href="https://flutter.dev/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/flutter-colored.svg" width="36" height="36" alt="Flutter" /></a>
-</p>
+### Database Management Systems
 
+- **Student Management System:** Developed a robust database system to manage student records efficiently.
+- **Railway Management System:** Designed a database solution to streamline railway operations and ticketing.
+- **Airline Management:** Created a comprehensive system for managing airline bookings and schedules.
 
-### Socials
+### Robotics
 
-<p align="left"> <a href="https://discord.com/users/illendyou_" target="_blank" rel="noreferrer"> <picture> <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/discord-dark.svg" /> <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/discord.svg" /> <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/discord.svg" width="32" height="32" /> </picture> </a> <a href="https://www.github.com/Tharun-10Dragneel" target="_blank" rel="noreferrer"> <picture> <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github-dark.svg" /> <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github.svg" /> <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github.svg" width="32" height="32" /> </picture> </a> <a href="http://www.instagram.com/kz_tharun_10" target="_blank" rel="noreferrer"> <picture> <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/instagram-dark.svg" /> <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/instagram.svg" /> <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/instagram.svg" width="32" height="32" /> </picture> </a> <a href="https://www.linkedin.com/in/tharundhatri" target="_blank" rel="noreferrer"> <picture> <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/linkedin-dark.svg" /> <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/linkedin.svg" /> <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/linkedin.svg" width="32" height="32" /> </picture> </a> <a href="https://www.x.com/badassbystyle" target="_blank" rel="noreferrer"> <picture> <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/twitter-dark.svg" /> <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/twitter.svg" /> <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/twitter.svg" width="32" height="32" /> </picture> </a></p>
+- **Remote Controlled Car:** Built a car that can be controlled remotely using Arduino and Bluetooth.
+- **Hydraulic Crane:** Constructed a functioning hydraulic crane model using Arduino and servo motors.
+- **Humanoid Robot:** Developed a humanoid robot capable of basic movements and interactions.
 
-### Badges
+## Achievements
 
-<b>My GitHub Stats</b>
+- **HACK KRMU 3.0 - Top 50:** Attained a position in the top 50 out of 143 teams in this 42-hour-long hackathon by presenting a game-changing idea.
 
-<a href="http://www.github.com/Tharun-10Dragneel"><img src="https://github-readme-stats.vercel.app/api?username=Tharun-10Dragneel&show_icons=true&hide=&count_private=true&title_color=0891b2&text_color=ffffff&icon_color=0891b2&bg_color=1c1917&hide_border=true&show_icons=true" alt="Tharun-10Dragneel's GitHub stats" /></a>
+## Connect with Me
+
+- Devfolio: https://devfolio.co/profile
+
+## Get in Touch
+
+I'm always open to collaborating on exciting projects or discussing new ideas. Feel free to reach out to me via tharundhatri100204@email.com).
+
+Thanks for stopping by! 😊
