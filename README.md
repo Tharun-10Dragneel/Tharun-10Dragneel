@@ -27,6 +27,10 @@ Welcome to my GitHub profile! I'm a passionate software developer with experienc
 - **Hydraulic Crane:** Constructed a functioning hydraulic crane model using Arduino and servo motors.
 - **Humanoid Robot:** Developed a humanoid robot capable of basic movements and interactions.
 
+### Apps
+- **Currency Converter App:** Developed a Currency converter app which convert USD to inr.
+- **Weather App:** Develped a Weather app
+
 ## Achievements
 
 - **HACK KRMU 3.0 - Top 50:** Attained a position in the top 50 out of 143 teams in this 42-hour-long hackathon by presenting a game-changing idea.
