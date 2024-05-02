@@ -34,10 +34,12 @@ Welcome to my GitHub profile! I'm a passionate software developer with experienc
 ## Achievements
 
 - **HACK KRMU 3.0 - Top 50:** Attained a position in the top 50 out of 143 teams in this 42-hour-long hackathon by presenting a game-changing idea.
+- **GEEKROOM KRMU** - HOD of the Mobile App Development 
 
 ## Connect with Me
 
 - Devfolio: https://devfolio.co/profile
+  
 
 ## Get in Touch
 
