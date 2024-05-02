@@ -4,14 +4,14 @@ Welcome to my GitHub profile! I'm a passionate software developer with experienc
 
 ## Skills Acquired
 
-- **Programming Languages:** Python, HTML, CSS, JavaScript, Arduino, Scratch, SQL
+- **Programming Languages:** Python, HTML, CSS, JavaScript, Arduino, Scratch, SQL, Dart, Flutter
 - **Data Analysis & Visualization:** Microsoft Excel, Microsoft PowerBi
 - **Cloud Technologies:** Microsoft Azure AI, Microsoft Power Automate, AWS
 - **Design & Drafting:** AutoCAD
 
 ## Currently Learning
 
-- **Flutter & Dart:** Excited to dive into mobile app development with Flutter and Dart!
+- **Flutter & Dart:** Excited to dive into mobile app development with Kotlin and Java!
 
 ## Projects
 
