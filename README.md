@@ -11,7 +11,7 @@ Welcome to my GitHub profile! I'm a passionate software developer with experienc
 
 ## Currently Learning
 
-- **Flutter & Dart:** Excited to dive into mobile app development with Kotlin and Java!
+- **React-Native:** Excited to dive into mobile app development with ReactNative
 
 ## Projects
 
