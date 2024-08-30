@@ -30,6 +30,8 @@ Nothing as off now
 ### Apps
 - **Currency Converter App:** Developed a Currency converter app which convert USD to inr.
 - **Weather App:** Develped a Weather app
+- **Netflix-clone App:** Develped a Netflix clone
+
 
 ## Achievements
 
