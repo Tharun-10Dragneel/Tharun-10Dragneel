@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm S Tharundhatri</h1>
-<h3 align="center">A passionate App developer from India</h3>
+<h3 align="center">A passionate App/AI developer from India</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=tharun10-dragneel&label=Profile%20views&color=0e75b6&style=flat" alt="tharun10-dragneel" /> </p>
 
@@ -7,9 +7,9 @@
 
 <p align="left"> <a href="https://twitter.com/badassbystyle" target="blank"><img src="https://img.shields.io/twitter/follow/badassbystyle?logo=twitter&style=for-the-badge" alt="badassbystyle" /></a> </p>
 
-- 🔭 I’m currently working on **Instagram clone**
+- 🔭 I’m currently working on **Finetuning models for my Idea**
 
-- 🌱 I’m currently learning **currently learning Native Android**
+- 🌱 I’m currently learning **currently learning AI **
 
 - 💬 Ask me about **about Python React Native, Flutter, Linux and any games you wanna download**
 
