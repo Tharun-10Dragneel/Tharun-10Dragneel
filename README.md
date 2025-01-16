@@ -9,7 +9,7 @@
 
 - 🔭 I’m currently working on **Finetuning models for my Idea**
 
-- 🌱 I’m currently learning **currently learning AI **
+- 🌱 I’m currently learning **currently learning AI**
 
 - 💬 Ask me about **about Python React Native, Flutter, Linux and any games you wanna download**
 
