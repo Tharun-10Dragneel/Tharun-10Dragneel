@@ -11,7 +11,7 @@
 
 - 🌱 I’m currently learning **currently learning AI**
 
-- 💬 Ask me about **about Python React Native, Flutter, Linux and any games you wanna download**
+- 💬 Ask me about **about Python, Flutter, Linux, Machine Learning and any games you wanna download**
 
 - 📫 How to reach me **Tharundhatri100204@gmail.com**
 
