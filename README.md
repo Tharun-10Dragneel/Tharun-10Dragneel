@@ -1,5 +1,5 @@
 <div align="center">
-  <img height="360" width="201" src="https://imgflip.com/gif/9nk5kt"  />
+  <img height="360" src="https://imgflip.com/gif/9nk5kt"  />
 </div>
 
 ###
