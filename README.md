@@ -1,7 +1,6 @@
- <p align="center">
-  <img src="https://github.com/user-attachments/assets/7f0b6d73-6b1d-4dd5-b501-951c92e3d7fe" alt="9nk5kt" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7f0b6d73-6b1d-4dd5-b501-951c92e3d7fe" alt="9nk5kt" width="500" />
 </p>
- ![9nk5kt](https://github.com/user-attachments/assets/7f0b6d73-6b1d-4dd5-b501-951c92e3d7fe)
 
 ###
 
