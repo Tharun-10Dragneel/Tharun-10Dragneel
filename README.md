@@ -1,7 +1,7 @@
 # 👋
 
 <div align="center">
-   <img src="https://github.com/user-attachments/assets/7f0b6d73-6b1d-4dd5-b501-951c92e3d7fe" alt="9nk5kt" width="500" />
+   <img src="https://github.com/user-attachments/assets/7f0b6d73-6b1d-4dd5-b501-951c92e3d7fe" alt="9nk5kt" width="700" />
 </div>
 
 </br>
@@ -11,19 +11,19 @@
 
 # About ME 💬 :
 
-### - I'm 19 years  old Machine Learning & Artificial Intelligence Enthusiast from India.
+### - I'm 19 years old Machine Learning & Artificial Intelligence and App Dev(Andriod) Enthusiast from India.
 
 
 
 ### - Learning :
-- ✨ Data Structures & Algorithms
+- ✨ App Development (IOs)
 - ✨ Generative Adversarial Networks
 
 ### - Hobbies : 
 - ✨ Gaming Addict
 - ✨ Watching Anime
 - ✨ Reading Light Novels
-- ✨ Badminton (Neighbourhood Professional XD)
+- ✨ Football (Neighbourhood Professional XD)
 
 </br>
 </br>
