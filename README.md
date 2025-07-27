@@ -11,7 +11,7 @@
 
 # About ME 💬 :
 
-### - I'm 20 years old Machine Learning & Artificial Intelligence and App Dev(Andriod) Enthusiast from India.
+### - I'm 20 years old Machine Learning & Artificial Intelligence and App Dev Enthusiast from India.
 
 
 
