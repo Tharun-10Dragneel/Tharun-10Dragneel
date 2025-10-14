@@ -11,19 +11,22 @@
 
 # About ME 💬 :
 
-### - I'm 20 years old Machine Learning & Artificial Intelligence and App Dev Enthusiast from India.
-
+### - I'm 20 years old Machine Learning & Artificial Intelligence and App/Desktop Dev Enthusiast from India.
+### - Buliding AllyticAI Your Next Gen Personalized AI Assitant 
+### - Builidng Helio, Write your Best Output Anywhere
+### - Building PitchYourself, Base for your ideas,
 
 
 ### - Learning :
-- ✨ App Development (IOs)
-- ✨ Generative Adversarial Networks
+- ✨ App Development (Ios)
+- ✨ Mac Development (Macos)
+- ✨ Deep Learning 
 
 ### - Hobbies : 
 - ✨ Gaming Addict
 - ✨ Watching Anime
 - ✨ Reading Light Novels
-- ✨ Football (Neighbourhood Professional XD)
+- ✨ Football (State Professional XD)
 
 </br>
 </br>
