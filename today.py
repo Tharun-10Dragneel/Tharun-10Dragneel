@@ -160,7 +160,7 @@ def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, additio
     only adds the LOC value of commits authored by me
     """
     for node in history['edges']:
-        if node['node']['author']['user'] == OWNER_ID:
+        if node['node']['author']['user'] is not None and node['node']['author']['user']['id'] == OWNER_ID['id']:
             my_commits += 1
             addition_total += node['node']['additions']
             deletion_total += node['node']['deletions']
