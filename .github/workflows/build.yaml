@@ -16,6 +16,7 @@ jobs:
         with:
           fetch-depth: 1
           token: ${{ secrets.ACCESS_TOKEN }}
+          persist-credentials: true
       - name: Get Python 3.8
         uses: actions/setup-python@v5
         with:
@@ -41,5 +42,3 @@ jobs:
           git config --global user.name "Tharun-10Dragneel/GitHub-Actions-Bot"
           git commit -m "Updated README" -a || echo "No changes to commit"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
