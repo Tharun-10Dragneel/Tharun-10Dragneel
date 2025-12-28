@@ -33,7 +33,7 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           USER_NAME: ${{ secrets.USER_NAME }}
         run: python today.py
-      - name: Commit
+      - name: Commit and Push
         run: |-
           git add .
           git diff
@@ -41,3 +41,5 @@ jobs:
           git config --global user.name "Tharun-10Dragneel/GitHub-Actions-Bot"
           git commit -m "Updated README" -a || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
