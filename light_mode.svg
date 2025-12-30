@@ -20,18 +20,16 @@ text, tspan {white-space: pre;}
 <text x="390" y="30" fill="#1f2328">
 <tspan x="390" y="30">tharun@dragneel</tspan> -———————————————————————————————————————————-—-
 <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">macOS, Ubuntu Linux</tspan>
-<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> ...................... </tspan><tspan class="value" id="age_data">20 years, 0 months, 0 days</tspan>
+<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> .......... </tspan><tspan class="value" id="age_data">20 years, 0 months, 0 days</tspan>
 <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Shell</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">Swift, Kotlin, Rust, Python</tspan>
 <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Tools</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">Flutter, Docker, GCP, AWS, Linux</tspan>
 <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">Xcode, Android Studio, VSCode</tspan>
-<tspan x="390" y="150" class="cc">. </tspan>
-<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Interests</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">AI/ML, Swift, Football</tspan>
+<tspan x="390" y="150" class="cc">. </tspan><tspan class="key">Interests</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">AI/ML, Swift, Football</tspan>
 <tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Focus</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">iOS, macOS, AI/ML</tspan>
 <tspan x="390" y="210" class="cc">. </tspan>
 <tspan x="390" y="250">- Contact</tspan> -——————————————————————————————————————————————-—-
 <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Email</tspan>:<tspan class="cc"> .............. </tspan><tspan class="value">tharundhatri100204@gmail.com</tspan>
-<tspan x="390" y="290" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:<tspan class="cc"> .............................. </tspan><tspan class="value">[Add your LinkedIn]</tspan>
-<tspan x="390" y="310" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc"> ............................... </tspan><tspan class="value">[Add your Discord]</tspan>
+<tspan x="390" y="290" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc"> .......... </tspan><a href="https://discord.com/users/704298801430790212" target="_blank"><tspan class="value">Hak</tspan></a>
 <tspan x="390" y="350">- GitHub Stats</tspan> -—————————————————————————————————————————-—-
 <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc" id="repo_data_dots"> .... </tspan><tspan class="value" id="repo_data">27</tspan> {<tspan class="key">Contributed</tspan>: <tspan class="value" id="contrib_data">42</tspan>} | <tspan class="key">Stars</tspan>:<tspan class="cc" id="star_data_dots"> ............ </tspan><tspan class="value" id="star_data">11</tspan>
 <tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Commmits</tspan>:<tspan class="cc" id="commit_data_dots"> ................... </tspan><tspan class="value" id="commit_data">121</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ......... </tspan><tspan class="value" id="follower_data">4</tspan>
