@@ -20,7 +20,7 @@ text, tspan {white-space: pre;}
 <text x="390" y="30" fill="#1f2328">
 <tspan x="390" y="30">tharun@dragneel</tspan> -———————————————————————————————————————————-—-
 <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">macOS, Ubuntu Linux</tspan>
-<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> ........ </tspan><tspan class="value" id="age_data">20 years, 10 months, 27 days</tspan>
+<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> ........ </tspan><tspan class="value" id="age_data">20 years, 10 months, 28 days</tspan>
 <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Shell</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">Swift, Kotlin, Rust, Python</tspan>
 <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Tools</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">Flutter, Docker, GCP, AWS, Linux</tspan>
 <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">Xcode, Android Studio, VSCode</tspan>
