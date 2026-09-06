@@ -14,6 +14,8 @@ HEADERS = {'authorization': 'token ' + ACCESS_TOKEN}
 USER_NAME = os.getenv('USER_NAME', 'Tharun-10Dragneel')
 API_URL = 'https://api.github.com/graphql'
 API_TIMEOUT = (10, 60)
+MAX_RETRIES = 3
+RETRY_BACKOFF = 1
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
 
 
@@ -48,13 +50,21 @@ def simple_request(func_name, query, variables):
     """
     if not ACCESS_TOKEN:
         raise RuntimeError('ACCESS_TOKEN is required for GitHub API requests')
-    try:
-        request = requests.post(API_URL, json={'query': query, 'variables': variables},
-                                headers=HEADERS, timeout=API_TIMEOUT)
-    except requests.RequestException as error:
-        raise RuntimeError(f'{func_name} API request failed: {error}') from error
-    if request.status_code != 200:
-        raise RuntimeError(f'{func_name} failed with HTTP {request.status_code}: {request.text}')
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            request = requests.post(API_URL, json={'query': query, 'variables': variables},
+                                    headers=HEADERS, timeout=API_TIMEOUT)
+        except (requests.Timeout, requests.ConnectionError) as error:
+            if attempt == MAX_RETRIES:
+                raise RuntimeError(f'{func_name} API request failed: {error}') from error
+            time.sleep(RETRY_BACKOFF * (attempt + 1))
+            continue
+        if request.status_code != 200:
+            if request.status_code in (429, 502, 503, 504) and attempt < MAX_RETRIES:
+                time.sleep(RETRY_BACKOFF * (attempt + 1))
+                continue
+            raise RuntimeError(f'{func_name} failed with HTTP {request.status_code}: {request.text}')
+        break
     payload = request.json()
     if payload.get('errors'):
         raise RuntimeError(f'{func_name} returned GraphQL errors: {payload["errors"]}')
@@ -87,7 +97,6 @@ def graph_repos_stars(count_type, owner_affiliation, cursor=None, add_loc=0, del
     """
     Uses GitHub's GraphQL v4 API to return my total repository, star, or lines of code count.
     """
-    query_count('graph_repos_stars')
     query = '''
     query ($owner_affiliation: [RepositoryAffiliation], $login: String!, $cursor: String) {
         user(login: $login) {
@@ -112,6 +121,7 @@ def graph_repos_stars(count_type, owner_affiliation, cursor=None, add_loc=0, del
     }'''
     total_stars = 0
     while True:
+        query_count('graph_repos_stars')
         request = simple_request(graph_repos_stars.__name__, query,
                                  {'owner_affiliation': owner_affiliation,
                                   'login': USER_NAME, 'cursor': cursor})
@@ -133,15 +143,13 @@ def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, delet
     """
     Uses GitHub's GraphQL v4 API and cursor pagination to fetch 100 commits from a repository at a time
     """
-    query_count('recursive_loc')
     query = '''
-    query ($repo_name: String!, $owner: String!, $cursor: String) {
+    query ($repo_name: String!, $owner: String!, $cursor: String, $authorId: ID!) {
         repository(name: $repo_name, owner: $owner) {
             defaultBranchRef {
                 target {
                     ... on Commit {
-                        history(first: 100, after: $cursor) {
-                            totalCount
+                        history(first: 100, after: $cursor, author: {id: $authorId}) {
                             edges {
                                 node {
                                     ... on Commit {
@@ -166,15 +174,26 @@ def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, delet
             }
         }
     }'''
-    variables = {'repo_name': repo_name, 'owner': owner, 'cursor': cursor}
-    request = simple_request(recursive_loc.__name__, query, variables)
-    repository = request.json()['data']['repository']
-    if repository['defaultBranchRef'] is None:
-        return addition_total, deletion_total, my_commits
-    history = repository['defaultBranchRef']['target']['history']
-    if history is None or 'edges' not in history or 'pageInfo' not in history:
-        raise RuntimeError('Repository history data is incomplete')
-    return loc_counter_one_repo(owner, repo_name, data, cache_comment, history, addition_total, deletion_total, my_commits)
+    while True:
+        query_count('recursive_loc')
+        variables = {'repo_name': repo_name, 'owner': owner, 'cursor': cursor,
+                     'authorId': OWNER_ID['id']}
+        request = simple_request(recursive_loc.__name__, query, variables)
+        repository = request.json()['data']['repository']
+        if repository['defaultBranchRef'] is None:
+            return addition_total, deletion_total, my_commits
+        history = repository['defaultBranchRef']['target']['history']
+        if history is None or 'edges' not in history or 'pageInfo' not in history:
+            raise RuntimeError('Repository history data is incomplete')
+        addition_total, deletion_total, my_commits = loc_counter_one_repo(
+            owner, repo_name, data, cache_comment, history,
+            addition_total, deletion_total, my_commits)
+        if not history['pageInfo']['hasNextPage']:
+            return addition_total, deletion_total, my_commits
+        next_cursor = history['pageInfo']['endCursor']
+        if not next_cursor or next_cursor == cursor:
+            raise RuntimeError('History pagination did not advance its cursor')
+        cursor = next_cursor
 
 
 def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, addition_total, deletion_total, my_commits):
@@ -188,9 +207,7 @@ def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, additio
             addition_total += node['node']['additions']
             deletion_total += node['node']['deletions']
 
-    if history['edges'] == [] or not history['pageInfo']['hasNextPage']:
-        return addition_total, deletion_total, my_commits
-    else: return recursive_loc(owner, repo_name, data, cache_comment, addition_total, deletion_total, my_commits, history['pageInfo']['endCursor'])
+    return addition_total, deletion_total, my_commits
 
 
 def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None, edges=None):

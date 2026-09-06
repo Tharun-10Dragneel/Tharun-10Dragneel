@@ -1,22 +1,24 @@
 # Bounded workflow repair design
 
 ## Scope
-Repair `today.py` and `.github/workflows/build.yaml`. Do not edit SVG files.
+Repair transient GitHub failures in `today.py`. Do not edit SVG files.
+
+## Evidence
+The live workflow failed after five minutes with HTTP 503 from `recursive_loc`. The current code alternates recursive calls between `recursive_loc` and `loc_counter_one_repo` for each history page.
 
 ## Changes
-- Make API calls use a short connect/read timeout.
-- Treat GraphQL `errors` and malformed success data as failures.
-- Paginate owned repository stars and return the complete total.
-- Keep authored commit counts from the existing cache.
-- Preserve missing data as an error. Do not convert API failures to zero.
-- Make import safe when workflow environment variables are absent.
-- Add `workflow_dispatch` and use a supported Python version.
-- Make commit and push failures fail the workflow.
-- Keep the existing SVG IDs and static SVG content unchanged.
+- Retry only transient HTTP 502, 503, 504, 429, and network timeout/connection errors.
+- Use a small fixed retry limit and bounded backoff. Fail after exhaustion.
+- Replace inner history recursion with an iterative cursor loop.
+- Filter inner history by the authenticated owner ID while retaining the local author-ID guard.
+- Keep the outer unfiltered history `totalCount` for cache invalidation.
+- Preserve fail-fast behavior for authentication and other API errors.
 
 ## Checks
-- Mock HTTP responses for timeout, HTTP error, GraphQL error, malformed data, and star pagination.
-- Check cache commit semantics and import without secrets.
-- Check SVG overwrite changes only dynamic text and dynamic dot IDs.
-- Validate YAML syntax and run the focused test suite.
-- Do not run the full live-history query without valid access and explicit approval.
+- Mock more than 100 history entries and mixed primary authors, foreign authors, and null authors.
+- Check empty repositories and empty filtered matches.
+- Check cursor progress guards.
+- Check transient retry success and exhaustion.
+- Check fail-fast authentication errors.
+- Run the real `__main__` harness with mocked HTTP and both SVG copies.
+- Run formatter, lint, compile, and the focused test suite.
