@@ -1,5 +1,6 @@
 name: README build
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -17,10 +18,10 @@ jobs:
           fetch-depth: 1
           token: ${{ secrets.ACCESS_TOKEN }}
           persist-credentials: true
-      - name: Get Python 3.8
+      - name: Get Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: '3.12'
       - name: Configure pip cache
         uses: actions/cache@v4
         with:
@@ -40,5 +41,5 @@ jobs:
           git diff
           git config --global user.email "tharundhatri100204@gmail.com"
           git config --global user.name "Tharun-10Dragneel"
-          git commit -m "Updated README [skip ci]" -a || echo "No changes to commit"
+          git commit -m "Updated README [skip ci]" -a || test -z "$(git status --porcelain)"
           git push

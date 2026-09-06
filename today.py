@@ -9,8 +9,11 @@ import hashlib
 # Fine-grained personal access token with All Repositories access:
 # Account permissions: read:Followers, read:Starring, read:Watching
 # Repository permissions: read:Commit statuses, read:Contents, read:Issues, read:Metadata, read:Pull Requests
-HEADERS = {'authorization': 'token '+ os.environ['ACCESS_TOKEN']}
-USER_NAME = os.environ['USER_NAME'] # 'Tharun-10Dragneel'
+ACCESS_TOKEN = os.getenv('ACCESS_TOKEN', '')
+HEADERS = {'authorization': 'token ' + ACCESS_TOKEN}
+USER_NAME = os.getenv('USER_NAME', 'Tharun-10Dragneel')
+API_URL = 'https://api.github.com/graphql'
+API_TIMEOUT = (10, 60)
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
 
 
@@ -43,10 +46,21 @@ def simple_request(func_name, query, variables):
     """
     Returns a request, or raises an Exception if the response does not succeed.
     """
-    request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS)
-    if request.status_code == 200:
-        return request
-    raise Exception(func_name, ' has failed with a', request.status_code, request.text, QUERY_COUNT)
+    if not ACCESS_TOKEN:
+        raise RuntimeError('ACCESS_TOKEN is required for GitHub API requests')
+    try:
+        request = requests.post(API_URL, json={'query': query, 'variables': variables},
+                                headers=HEADERS, timeout=API_TIMEOUT)
+    except requests.RequestException as error:
+        raise RuntimeError(f'{func_name} API request failed: {error}') from error
+    if request.status_code != 200:
+        raise RuntimeError(f'{func_name} failed with HTTP {request.status_code}: {request.text}')
+    payload = request.json()
+    if payload.get('errors'):
+        raise RuntimeError(f'{func_name} returned GraphQL errors: {payload["errors"]}')
+    if 'data' not in payload or payload['data'] is None:
+        raise RuntimeError(f'{func_name} returned no data')
+    return request
 
 
 def graph_commits(start_date, end_date):
@@ -96,13 +110,23 @@ def graph_repos_stars(count_type, owner_affiliation, cursor=None, add_loc=0, del
             }
         }
     }'''
-    variables = {'owner_affiliation': owner_affiliation, 'login': USER_NAME, 'cursor': cursor}
-    request = simple_request(graph_repos_stars.__name__, query, variables)
-    if request.status_code == 200:
+    total_stars = 0
+    while True:
+        request = simple_request(graph_repos_stars.__name__, query,
+                                 {'owner_affiliation': owner_affiliation,
+                                  'login': USER_NAME, 'cursor': cursor})
+        repositories = request.json()['data']['user']['repositories']
         if count_type == 'repos':
-            return request.json()['data']['user']['repositories']['totalCount']
-        elif count_type == 'stars':
-            return stars_counter(request.json()['data']['user']['repositories']['edges'])
+            return repositories['totalCount']
+        if count_type != 'stars':
+            raise ValueError(f'Unknown repository count type: {count_type}')
+        total_stars += stars_counter(repositories['edges'])
+        if not repositories['pageInfo']['hasNextPage']:
+            return total_stars
+        next_cursor = repositories['pageInfo']['endCursor']
+        if not next_cursor or next_cursor == cursor:
+            raise RuntimeError('Star pagination did not advance its cursor')
+        cursor = next_cursor
 
 
 def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, deletion_total=0, my_commits=0, cursor=None):
@@ -143,15 +167,14 @@ def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, delet
         }
     }'''
     variables = {'repo_name': repo_name, 'owner': owner, 'cursor': cursor}
-    request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS)
-    if request.status_code == 200:
-        if request.json()['data']['repository']['defaultBranchRef'] != None:
-            return loc_counter_one_repo(owner, repo_name, data, cache_comment, request.json()['data']['repository']['defaultBranchRef']['target']['history'], addition_total, deletion_total, my_commits)
-        else: return 0
-    force_close_file(data, cache_comment)
-    if request.status_code == 403:
-        raise Exception('Too many requests in a short amount of time!\nYou\'ve hit the non-documented anti-abuse limit!')
-    raise Exception('recursive_loc() has failed with a', request.status_code, request.text, QUERY_COUNT)
+    request = simple_request(recursive_loc.__name__, query, variables)
+    repository = request.json()['data']['repository']
+    if repository['defaultBranchRef'] is None:
+        return addition_total, deletion_total, my_commits
+    history = repository['defaultBranchRef']['target']['history']
+    if history is None or 'edges' not in history or 'pageInfo' not in history:
+        raise RuntimeError('Repository history data is incomplete')
+    return loc_counter_one_repo(owner, repo_name, data, cache_comment, history, addition_total, deletion_total, my_commits)
 
 
 def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, addition_total, deletion_total, my_commits):
@@ -170,7 +193,7 @@ def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, additio
     else: return recursive_loc(owner, repo_name, data, cache_comment, addition_total, deletion_total, my_commits, history['pageInfo']['endCursor'])
 
 
-def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None, edges=[]):
+def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None, edges=None):
     """
     Uses GitHub's GraphQL v4 API to query all the repositories I have access to (with respect to owner_affiliation)
     Queries 60 repos at a time, because larger queries give a 502 timeout error and smaller queries send too many
@@ -178,6 +201,7 @@ def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None,
     Returns the total number of lines of code in all repositories
     """
     query_count('loc_query')
+    edges = [] if edges is None else edges
     query = '''
     query ($owner_affiliation: [RepositoryAffiliation], $login: String!, $cursor: String) {
         user(login: $login) {
@@ -238,17 +262,22 @@ def cache_builder(edges, comment_size, force_cache, loc_add=0, loc_del=0):
             data = f.readlines()
 
     cache_comment = data[:comment_size]
-    data = data[comment_size:]
-    for index in range(len(edges)):
-        repo_hash, commit_count, *__ = data[index].split()
-        if repo_hash == hashlib.sha256(edges[index]['node']['nameWithOwner'].encode('utf-8')).hexdigest():
-            try:
-                if int(commit_count) != edges[index]['node']['defaultBranchRef']['target']['history']['totalCount']:
-                    owner, repo_name = edges[index]['node']['nameWithOwner'].split('/')
-                    loc = recursive_loc(owner, repo_name, data, cache_comment)
-                    data[index] = repo_hash + ' ' + str(edges[index]['node']['defaultBranchRef']['target']['history']['totalCount']) + ' ' + str(loc[2]) + ' ' + str(loc[0]) + ' ' + str(loc[1]) + '\n'
-            except TypeError:
-                data[index] = repo_hash + ' 0 0 0 0\n'
+    old_data = {line.split()[0]: line for line in data[comment_size:]}
+    data = []
+    for edge in edges:
+        node = edge['node']
+        repo_hash = hashlib.sha256(node['nameWithOwner'].encode('utf-8')).hexdigest()
+        line = old_data.get(repo_hash, repo_hash + ' 0 0 0 0\n')
+        parts = line.split()
+        if len(parts) != 5:
+            raise RuntimeError('Repository cache data is malformed')
+        branch = node['defaultBranchRef']
+        total = 0 if branch is None else branch['target']['history']['totalCount']
+        if int(parts[1]) != total:
+            owner, repo_name = node['nameWithOwner'].split('/')
+            loc = recursive_loc(owner, repo_name, data, cache_comment)
+            line = f'{repo_hash} {total} {loc[2]} {loc[0]} {loc[1]}\n'
+        data.append(line)
     with open(filename, 'w') as f:
         f.writelines(cache_comment)
         f.writelines(data)
@@ -416,10 +445,11 @@ def formatter(query_type, difference, funct_return=False, whitespace=0):
     return funct_return
 
 
-if __name__ == '__main__':
+def main():
     """
     Tharun (Tharun-10Dragneel), 2025
     """
+    global OWNER_ID
     print('Calculation times:')
     # define global variable for owner ID and calculate user's creation date
     user_data, user_time = perf_counter(user_getter, USER_NAME)
@@ -447,3 +477,6 @@ if __name__ == '__main__':
 
     print('Total GitHub GraphQL API calls:', '{:>3}'.format(sum(QUERY_COUNT.values())))
     for funct_name, count in QUERY_COUNT.items(): print('{:<28}'.format('   ' + funct_name + ':'), '{:>6}'.format(count))
+
+if __name__ == '__main__':
+    main()
